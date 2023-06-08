@@ -1,3 +1,5 @@
+import './mesero.css';
+
 function Mesero() {
   return (
     <>
@@ -27,7 +29,7 @@ function Mesero() {
             />
           </form>
           <form>
-          <button type="submit" className="btn">
+          <button type="submit" className="btnMesa">
                         Mesas
                     </button>
           </form>

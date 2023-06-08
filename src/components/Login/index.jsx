@@ -6,7 +6,8 @@ import './login.css';
 //formulario para inicion de sesion 
 const Login = () => {
   const [usuario, setUsuario] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [accessToken, setAccessToken] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -14,12 +15,17 @@ const Login = () => {
 
     // Realizar la petición POST al servidor
     axios
-      .post('http://localhost:8080/login', { usuario, contrasena })
-      .then(response => {
+      .post('http://localhost:8080/login', { usuario, contraseña },
+      { headers: { 'Content-Type': 'application/json' }, 
+    }).then(response => {
         // Procesar la respuesta exitosa
         console.log(response.data);
         // Redirigir a la pagina de mesero 
         navigate('/Mesero');
+         // Acceder al accessToken en la respuesta
+         const accessToken = response.data.accessToken;
+         setAccessToken(accessToken);
+         // Utilizar el accessToken como sea necesario, por ejemplo, guardarlo en el estado o en el almacenamiento local
       })
       .catch(error => {
         // Manejar el error de la petición
@@ -43,14 +49,14 @@ const Login = () => {
           placeholder="Correo electrónico"
           className="formularioLogin"
           value={usuario}
-          onChange={(event) => setUsuario(event.target.value)}
+          onChange={(e) => setUsuario(e.target.value)}
         />
         <input
           type="password"
           placeholder="Contraseña"
           className="formularioLogin"
-          value={contrasena}
-          onChange={(event) => setContrasena(event.target.value)}
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
         />
          <button type="submit" className="btn">Ingresar</button>
       </form>
