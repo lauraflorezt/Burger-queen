@@ -1,6 +1,7 @@
 
 import { useRoutes,BrowserRouter } from 'react-router-dom';
 import { useState } from 'react'
+import { ShoppingCartProvider } from '../../components/Context'
 import Login from '../Login';
 import Mesero  from '../Mesero';
 import Admin  from '../Admin';
@@ -28,9 +29,11 @@ function App() {
   //retornamos las rutas 
   return (
     // BrowserRouter muestra las rutas 
+    <ShoppingCartProvider>
     <BrowserRouter> 
      <Approutes/>
     </BrowserRouter>
+    </ShoppingCartProvider>
   );
 }
 export default App

@@ -1,9 +1,7 @@
 const Layout = ({ children }) => {
     return (
-      <div className='flex items-center justify-center '>
-      <div className=' p-0' style={{ width: '1180px', height: '820px' }}>
+      <div className=' bg-gray-100 flex justify-center items-center'>
         {children}
-      </div>
     </div>
   );
   }
